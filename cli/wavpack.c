@@ -302,6 +302,7 @@ static void TextToUTF8 (void *string, int len);
 #define WAVPACK_NO_ERROR    0
 #define WAVPACK_SOFT_ERROR  1
 #define WAVPACK_HARD_ERROR  2
+#define MAX_NUM_CHANNELS  1024
 
 // The "main" function for the command-line WavPack compressor. Note that on Windows
 // this is actually a static function that is called from the "real" main() defined
@@ -453,7 +454,7 @@ int main (int argc, char **argv)
                 }
                 else if (params [0] < 1 || params [0] > 1000000000 ||
                     params [1] < 1 || params [1] > 32 || (fp && params [1] != 32) ||
-                    params [2] < 1 || params [2] > 256) {
+                    params [2] < 1 || params [2] > MAX_NUM_CHANNELS) {
                         error_line ("argument range error in raw PCM specification!");
                         ++error_count;
                 }

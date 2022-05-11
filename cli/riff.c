@@ -44,6 +44,7 @@ typedef struct {
 #define WAVPACK_NO_ERROR    0
 #define WAVPACK_SOFT_ERROR  1
 #define WAVPACK_HARD_ERROR  2
+#define MAX_NUM_CHANNELS  1024
 
 extern int debug_logging_mode;
 
@@ -186,7 +187,7 @@ int ParseRiffHeaderConfig (FILE *infile, char *infilename, char *fourcc, Wavpack
             if (format == 3 && config->bits_per_sample != 32)
                 supported = FALSE;
 
-            if (!WaveHeader.NumChannels || WaveHeader.NumChannels > 256 ||
+            if (!WaveHeader.NumChannels || WaveHeader.NumChannels > MAX_NUM_CHANNELS ||
                 WaveHeader.BlockAlign / WaveHeader.NumChannels < (config->bits_per_sample + 7) / 8 ||
                 WaveHeader.BlockAlign / WaveHeader.NumChannels > 4 ||
                 WaveHeader.BlockAlign % WaveHeader.NumChannels)
